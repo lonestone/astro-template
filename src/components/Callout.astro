@@ -1,0 +1,30 @@
+---
+interface Props {
+  type?: 'info' | 'warning' | 'tip'
+  title?: string
+}
+
+const { type = 'info', title } = Astro.props
+
+const styles = {
+  info: 'bg-callout-info border-l-[#74c0fc]',
+  warning: 'bg-callout-warning border-l-[#ffc078]',
+  tip: 'bg-callout-tip border-l-[#69db7c]',
+}
+
+const emojis = {
+  info: 'ℹ️',
+  warning: '⚠️',
+  tip: '💡',
+}
+---
+
+<div class:list={['p-4 border-l-4 rounded-r-lg my-4', styles[type]]}>
+  {title && (
+    <strong class="flex items-center gap-2 mb-1">
+      <span aria-hidden="true">{emojis[type]}</span>
+      {title}
+    </strong>
+  )}
+  <slot />
+</div>

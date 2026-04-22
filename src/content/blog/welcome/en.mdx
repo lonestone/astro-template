@@ -1,0 +1,47 @@
+---
+title: 'Welcome to your new site'
+summary: 'A quick tour of how this Astro template is organized and how to make it your own.'
+date: 2026-04-01
+author: The team
+image: ./thumbnail.jpg
+similarPosts:
+  - choosing-content-collections
+---
+
+This is a sample blog post. Everything you see (headings, paragraphs, lists, code blocks, callouts) comes from a single MDX file in `src/content/blog/<slug>/<lang>.mdx`.
+
+## What lives in a blog post
+
+Each post has a small front matter block at the top of the file:
+
+```yaml
+---
+title: "..."
+summary: "..."
+date: 2026-04-01
+image: ./cover.jpg
+author: Your name
+similarPosts:
+  - other-slug
+---
+```
+
+The `summary` is shown on the index, next to the card image. The `similarPosts` list surfaces cross-links at the bottom of the article.
+
+## Rich content, zero imports
+
+Any Astro component in `src/components/` is available directly inside MDX. You can drop in a callout:
+
+<Callout type="tip" title="Callouts">
+  This block was written with `<Callout type="tip" title="Callouts">` inside the MDX file.
+</Callout>
+
+…or a CTA banner, a split section, a YouTube embed, or anything else.
+
+## Table of contents
+
+Every H2 in the article automatically becomes an item in the table of contents on the right. On mobile, the TOC collapses into a dropdown so it stays out of the way.
+
+## Next steps
+
+Duplicate this file, change the slug (the folder name), and you have a new post. Use the sidebar on the right to navigate. Happy writing!

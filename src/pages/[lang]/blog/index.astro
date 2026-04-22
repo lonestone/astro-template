@@ -1,0 +1,12 @@
+---
+import BlogIndex from '../../../layouts/BlogIndex.astro'
+import config from '../../../../website.config'
+
+export function getStaticPaths() {
+  return config.langs.map((lang) => ({ params: { lang } }))
+}
+
+const { lang } = Astro.params
+---
+
+<BlogIndex lang={lang} />

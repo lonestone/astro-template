@@ -1,0 +1,32 @@
+---
+title: 'Getting started'
+description: 'Set up your environment and make your first request.'
+order: 1
+---
+
+## Prerequisites
+
+- Node.js 18+
+- An API key (generate one from your account settings)
+
+## Your first request
+
+```bash
+curl https://api.example.com/v1/ping \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+Expected response:
+
+```json
+{ "status": "ok" }
+```
+
+<Callout type="warning" title="Never commit your API key">
+  Store the key in an environment variable. Don't hardcode it into source files.
+</Callout>
+
+## Next steps
+
+- Browse the [API reference](/en/api) to see every endpoint.
+- Subscribe to webhooks (covered in the reference).

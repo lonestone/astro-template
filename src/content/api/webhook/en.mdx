@@ -1,0 +1,33 @@
+---
+title: 'Webhook'
+description: 'A URL that receives event payloads when things change in your account.'
+entity: 'webhook'
+category: 'automation'
+---
+
+## Fields
+
+<EntityFields
+  fields={[
+    { name: 'id', type: 'uuid', description: 'Unique identifier for the webhook' },
+    { name: 'url', type: 'String', description: 'Destination URL that receives the POST requests' },
+    { name: 'events', type: 'String[]', description: 'Event names this webhook listens to' },
+    { name: 'active', type: 'Boolean', description: 'Whether the webhook is currently delivering events' },
+  ]}
+/>
+
+## Delivery
+
+On each matching event, the product sends a `POST` request to `url` with a JSON body:
+
+```json
+{
+  "event": "user.created",
+  "payload": { /* entity snapshot */ },
+  "deliveredAt": "2026-04-01T10:15:00Z"
+}
+```
+
+<Callout type="info" title="Retries">
+  Failed deliveries are retried up to 5 times with exponential backoff.
+</Callout>

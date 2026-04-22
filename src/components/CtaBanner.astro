@@ -1,0 +1,39 @@
+---
+/**
+ * Self-contained call-to-action banner with a soft yellow background.
+ * Drop it at the end of a page; it brings its own section wrapper and
+ * spacing so MDX files don't need to wrap it in a themed Section.
+ */
+import Button from './Button.astro'
+
+interface Props {
+  title: string
+  primaryLabel: string
+  primaryHref: string
+  secondaryLabel?: string
+  secondaryHref?: string
+}
+
+const {
+  title,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props
+---
+
+<section class="w-full max-w-5xl px-6 mt-24">
+  <div class="bg-yellow-100 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+    <div>
+      <h2 class="text-xl md:text-2xl font-bold mt-0 mb-0">{title}</h2>
+      <p class="mt-4 text-text-secondary mb-0"><slot /></p>
+      <div class="flex flex-wrap gap-4 mt-6">
+        <Button href={primaryHref} variant="outline" label={primaryLabel} />
+        {secondaryLabel && secondaryHref && (
+          <Button href={secondaryHref} variant="orange" label={secondaryLabel} />
+        )}
+      </div>
+    </div>
+  </div>
+</section>

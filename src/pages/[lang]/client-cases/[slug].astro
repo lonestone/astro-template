@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content'
+import ClientCasePage from '../../../layouts/ClientCasePage.astro'
+import config from '../../../../website.config'
+
+export async function getStaticPaths() {
+  const paths = []
+  for (const lang of config.langs) {
+    const items = await getCollection('client-cases', (item) => item.id.endsWith(`/${lang}`))
+    for (const item of items) {
+      paths.push({
+        params: { lang, slug: item.id.replace(`/${lang}`, '') },
+        props: { item, lang },
+      })
+    }
+  }
+  return paths
+}
+
+const { item, lang } = Astro.props
+---
+
+<ClientCasePage item={item} lang={lang} />

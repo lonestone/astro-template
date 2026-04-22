@@ -1,0 +1,29 @@
+---
+import { getTranslations, getLangFromUrl, langPath } from '../utils/i18n'
+import TopNavShell from './TopNavShell.astro'
+import NavLink from './NavLink.astro'
+import Button from './Button.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = await getTranslations(lang)
+const lp = (path: string) => langPath(lang, path)
+
+interface Props {
+  staticHeader?: boolean
+}
+
+const { staticHeader = false } = Astro.props
+---
+
+<TopNavShell staticHeader={staticHeader}>
+  <Fragment slot="nav">
+    <NavLink path="/features">{t.features}</NavLink>
+    <NavLink path="/client-cases">{t.clientCases.label}</NavLink>
+    <NavLink path="/pricing">{t.pricing}</NavLink>
+    <NavLink path="/docs">{t.documentation}</NavLink>
+    <NavLink path="/blog">{t.blog.label}</NavLink>
+  </Fragment>
+  <Fragment slot="right">
+    <Button href={lp('/contact')} variant="outline-primary" size="sm" label={t.bookDemo} />
+  </Fragment>
+</TopNavShell>

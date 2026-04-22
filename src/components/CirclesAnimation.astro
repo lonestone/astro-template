@@ -1,0 +1,48 @@
+---
+/**
+ * Decorative looping circles used in the Hero. Pure CSS animation,
+ * no external iframe. Swap for a Rive / Lottie / video if you need richer motion.
+ */
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div class:list={['relative aspect-square', className]} aria-hidden="true">
+  <span class="anim anim-1"></span>
+  <span class="anim anim-2"></span>
+  <span class="anim anim-3"></span>
+</div>
+
+<style>
+  .anim {
+    position: absolute;
+    border-radius: 9999px;
+    mix-blend-mode: multiply;
+    animation: circle-drift 12s ease-in-out infinite;
+  }
+  .anim-1 {
+    width: 60%; height: 60%; top: 5%; left: 10%;
+    background: rgba(250, 166, 140, 0.6);
+    animation-delay: 0s;
+  }
+  .anim-2 {
+    width: 55%; height: 55%; top: 35%; left: 35%;
+    background: rgba(140, 186, 250, 0.6);
+    animation-delay: -4s;
+  }
+  .anim-3 {
+    width: 50%; height: 50%; top: 20%; right: 5%;
+    background: rgba(253, 237, 153, 0.7);
+    animation-delay: -8s;
+  }
+
+  @keyframes circle-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(8%, -5%) scale(1.06); }
+    66% { transform: translate(-6%, 6%) scale(0.94); }
+  }
+</style>

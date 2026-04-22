@@ -1,0 +1,42 @@
+---
+/**
+ * Infinite-marquee client logos strip. Add your own SVGs to
+ * src/assets/icons/references/ and list them below.
+ */
+import Icon from './Icon.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+
+// Placeholder entries rendered as monochrome text when no reference SVGs exist.
+const logos: { icon?: string; alt: string }[] = [
+  { alt: 'Acme Corp' },
+  { alt: 'Globex' },
+  { alt: 'Initech' },
+  { alt: 'Umbrella' },
+  { alt: 'Wayne Ent.' },
+  { alt: 'Stark Industries' },
+]
+---
+
+<section class:list={['overflow-hidden', className]}>
+  <div class="relative">
+    <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 md:w-48 bg-linear-to-r from-white to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 md:w-48 bg-linear-to-l from-white to-transparent"></div>
+    <div
+      class="animate-marquee flex w-max items-center text-gray-400"
+      style="--marquee-duration: 25s"
+    >
+      {[...logos, ...logos, ...logos].map(({ icon, alt }) => (
+        icon ? (
+          <Icon icon={icon} class="h-8 md:h-10 w-auto mr-20" aria-label={alt} />
+        ) : (
+          <span class="mr-20 text-xl md:text-2xl font-semibold tracking-tight whitespace-nowrap">{alt}</span>
+        )
+      ))}
+    </div>
+  </div>
+</section>

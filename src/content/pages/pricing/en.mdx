@@ -1,0 +1,77 @@
+---
+title: Pricing
+---
+
+<CenteredSection>
+# Simple pricing, no surprises
+</CenteredSection>
+
+<GridSection cols={3}>
+  <PricingCard
+    title="Starter"
+    price="Free"
+    priceUnit="forever"
+    description="For individuals getting started"
+    ctaLabel="Get started"
+    ctaHref="/en/contact"
+  >
+    <CheckItem label="Core features" />
+    <CheckItem label="Up to 3 projects" />
+    <CheckItem label="Community support" />
+  </PricingCard>
+
+  <PricingCard
+    title="Team"
+    price="$19"
+    priceUnit="/ month / user"
+    description="For growing teams"
+    featured
+    ctaLabel="Start free trial"
+    ctaHref="/en/contact"
+    ctaVariant="orange"
+  >
+    <CheckItem label="Unlimited projects" />
+    <CheckItem label="Priority support" />
+    <CheckItem label="Advanced integrations" />
+  </PricingCard>
+
+  <PricingCard
+    title="Enterprise"
+    price="Custom"
+    description="For larger organizations with specific needs"
+    ctaLabel="Contact sales"
+    ctaHref="/en/contact"
+    ctaVariant="outline"
+  >
+    <CheckItem label="Everything in Team" />
+    <CheckItem label="SSO and audit logs" />
+    <CheckItem label="Dedicated account manager" />
+    <CheckItem label="Custom SLAs" />
+  </PricingCard>
+</GridSection>
+
+<CenteredSection>
+_An active member is a person with a user account, invited to the organization. A person represented in the org chart without a user account is an inactive member._
+</CenteredSection>
+
+<Section theme="purple" textAlign="center">
+## Non-profit?
+
+We offer significant discounts for registered non-profits. Reach out to learn more.
+
+<Button href="/en/contact" variant="primary" label="Contact us" />
+</Section>
+
+<Section fullWidth>
+  <ClientLogos />
+</Section>
+
+<CtaBanner
+  title="Still have questions?"
+  primaryLabel="Read the docs"
+  primaryHref="/en/docs"
+  secondaryLabel="Talk to us"
+  secondaryHref="/en/contact"
+>
+  Every plan starts with a free trial. No credit card required.
+</CtaBanner>

@@ -1,0 +1,60 @@
+---
+import TopNav from '../components/TopNav.astro'
+import TopNavDev from '../components/TopNavDev.astro'
+import Footer from '../components/Footer.astro'
+import SocialPreview from '../components/SocialPreview.astro'
+import { getLangFromUrl } from '../utils/i18n'
+import { getCanonicalPath } from '../utils/getCanonicalPath'
+import '../styles/global.css'
+
+interface Props {
+  title: string
+  staticHeader?: boolean
+  image?: ImageMetadata
+  /**
+   * Bottom padding on the main content area. Defaults to true so content
+   * pages (home, features, blog, ...) breathe before the footer. Docs-style
+   * layouts with a side rail pass `false` so the sidebar stays flush.
+   */
+  bottomSpace?: boolean
+}
+
+const { title, staticHeader = false, image, bottomSpace = true } = Astro.props
+const currentPath = Astro.url.pathname
+const lang = getLangFromUrl(Astro.url)
+const isDevSection = currentPath.includes('/developers') || currentPath.includes('/api')
+const canonicalPath = getCanonicalPath(currentPath)
+const mdAlternatePath = `${canonicalPath}.md`
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(canonicalPath, Astro.site).href} />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href={new URL(mdAlternatePath, Astro.site).href}
+    />
+    <SocialPreview image={image} />
+    <!--
+      Drop analytics / chat widgets here. Guard with `import.meta.env.PROD`
+      so they never load in local dev. Example:
+
+      {import.meta.env.PROD && (
+        <script defer src="https://analytics.example.com/script.js"></script>
+      )}
+    -->
+  </head>
+  <body class="min-h-dvh flex flex-col">
+    {isDevSection ? <TopNavDev /> : <TopNav staticHeader={staticHeader} />}
+    <main class:list={['flex-1 flex flex-col items-center', bottomSpace && 'pb-24']}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

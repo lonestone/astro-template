@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# AI preferences. Tweak to your policy.
+# search=yes:   allow inclusion in AI search results
+# ai-input=yes: allow use as context at inference time
+# ai-train=no:  forbid use for model training
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+Sitemap: https://example.com/sitemap-index.xml

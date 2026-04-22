@@ -1,0 +1,15 @@
+---
+import { getTranslations, getLangFromUrl } from '../utils/i18n'
+import TopNavShell from './TopNavShell.astro'
+import NavLink from './NavLink.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = await getTranslations(lang)
+---
+
+<TopNavShell logoSuffix={t.developers}>
+  <Fragment slot="nav">
+    <NavLink path="/developers">{t.documentation}</NavLink>
+    <NavLink path="/api">{t.api.reference}</NavLink>
+  </Fragment>
+</TopNavShell>

@@ -1,0 +1,41 @@
+---
+/**
+ * Auto-inserted CTA placed mid-article (between H2 sections) on long-form
+ * content. Rendered once, then cloned into the DOM by the runtime script.
+ */
+import Button from './Button.astro'
+import { getLangFromUrl, getTranslations } from '../utils/i18n'
+
+const lang = getLangFromUrl(Astro.url)
+const t = await getTranslations(lang)
+---
+
+<div id="inline-cta-tpl" hidden>
+  <div class="relative my-10 overflow-hidden rounded-2xl bg-yellow-50 p-8 md:p-12">
+    <div class="relative z-10">
+      <p class="mb-2 text-2xl font-medium">
+        {t.cta.title}
+      </p>
+      <p class="mb-6 leading-relaxed md:pr-30">
+        {t.cta.description}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <Button href={`/${lang}/contact`} variant="orange" label={t.cta.button} />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tpl = document.getElementById("inline-cta-tpl");
+  if (tpl) {
+    const h2s = document.querySelectorAll("h2.md");
+    if (h2s.length >= 2) {
+      const start = h2s.length === 2 ? 1 : 2;
+      for (let i = start; i < h2s.length; i += 3) {
+        const clone = tpl.firstElementChild!.cloneNode(true);
+        h2s[i].parentNode?.insertBefore(clone, h2s[i]);
+      }
+    }
+  }
+</script>

@@ -1,0 +1,106 @@
+---
+// The outer shell of the top navigation: logo on the left, navigation in
+// the middle, actions on the right, and a burger-menu toggle on mobile
+// that mirrors the desktop nav + page sidebar into a panel.
+//
+// Actual links are provided by consumers through `nav` and `right` slots
+// (see TopNav.astro for the site nav, TopNavDev.astro for the /developers section).
+import { getLangFromUrl, langPath } from '../utils/i18n'
+import Logo from './Logo.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const lp = (path: string) => langPath(lang, path)
+
+interface Props {
+  staticHeader?: boolean
+  logoSuffix?: string
+}
+
+const { staticHeader = false, logoSuffix } = Astro.props
+---
+
+<header class:list={["border-b border-border bg-white z-50", staticHeader ? '' : 'sticky top-0']}>
+  <div class="flex items-center justify-between px-6 h-14">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <a href={lp('')} class="no-underline hover:no-underline"><Logo class="h-6" /></a>
+      {logoSuffix && <span class="font-bold text-lg text-text-secondary pt-1">{logoSuffix}</span>}
+    </div>
+
+    <!-- Desktop menu -->
+    <div class="hidden md:flex md:items-center md:gap-3 lg:gap-8 md:flex-1 md:ml-3 lg:ml-8">
+      <nav class="flex gap-1 min-w-0" data-nav>
+        <slot name="nav" />
+      </nav>
+      <div class="flex-1 min-w-0"></div>
+      <div class="flex items-center gap-3 shrink-0" data-right>
+        <slot name="right" />
+      </div>
+    </div>
+
+    <!-- Burger button (mobile) -->
+    <button
+      class="md:hidden p-2 -mr-2 text-text-secondary hover:text-text-main"
+      data-burger
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <svg class="w-6 h-6 block" data-icon="open" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg class="w-6 h-6 hidden" data-icon="close" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu panel, populated at runtime from desktop nav + sidebar -->
+  <div class="hidden md:hidden h-[calc(100dvh-57px)] overflow-y-auto border-t border-border bg-white" data-mobile-menu></div>
+</header>
+
+<script>
+  const header = document.querySelector("header")!
+  const burger = header.querySelector("[data-burger]") as HTMLElement
+  const menu = header.querySelector("[data-mobile-menu]") as HTMLElement
+  const iconOpen = header.querySelector("[data-icon='open']") as HTMLElement
+  const iconClose = header.querySelector("[data-icon='close']") as HTMLElement
+  const desktopNav = header.querySelector("[data-nav]") as HTMLElement
+  const desktopRight = header.querySelector("[data-right]") as HTMLElement
+
+  const mobileNav = desktopNav.cloneNode(true) as HTMLElement
+  mobileNav.className = "flex flex-col gap-1 px-6 pt-4"
+  mobileNav.removeAttribute("data-nav")
+  menu.appendChild(mobileNav)
+
+  // If the page has a docs sidebar, clone it into the mobile menu too.
+  const desktopSidebar = document.querySelector("[data-sidebar]") as HTMLElement | null
+  if (desktopSidebar) {
+    const mobileSidebar = desktopSidebar.cloneNode(true) as HTMLElement
+    mobileSidebar.className = "px-6 pt-6 pb-2"
+    mobileSidebar.removeAttribute("data-sidebar")
+    menu.appendChild(mobileSidebar)
+  }
+
+  const mobileRight = desktopRight.cloneNode(true) as HTMLElement
+  mobileRight.className = "flex flex-col items-start gap-3 px-6 pt-3 pb-5"
+  mobileRight.removeAttribute("data-right")
+  menu.appendChild(mobileRight)
+
+  function toggle() {
+    const isOpen = !menu.classList.contains("hidden")
+    menu.classList.toggle("hidden", isOpen)
+    iconOpen.classList.toggle("hidden", !isOpen)
+    iconOpen.classList.toggle("block", isOpen)
+    iconClose.classList.toggle("hidden", isOpen)
+    iconClose.classList.toggle("block", !isOpen)
+    burger.setAttribute("aria-expanded", String(!isOpen))
+  }
+
+  burger.addEventListener("click", toggle)
+
+  menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (!menu.classList.contains("hidden")) toggle()
+    })
+  })
+</script>

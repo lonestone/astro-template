@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content'
+import BlogPost from '../../../layouts/BlogPost.astro'
+import config from '../../../../website.config'
+
+export async function getStaticPaths() {
+  const paths = []
+  for (const lang of config.langs) {
+    const posts = await getCollection('blog', (p) => p.id.endsWith(`/${lang}`))
+    for (const post of posts) {
+      paths.push({
+        params: { lang, slug: post.id.replace(`/${lang}`, '') },
+        props: { post, lang },
+      })
+    }
+  }
+  return paths
+}
+
+const { post, lang } = Astro.props
+---
+
+<BlogPost post={post} lang={lang} />

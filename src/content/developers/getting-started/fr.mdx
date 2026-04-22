@@ -1,0 +1,32 @@
+---
+title: Démarrer
+description: Préparez votre environnement et effectuez votre première requête.
+order: 1
+---
+
+## Prérequis
+
+* Node.js 18+
+* Une clé API (à générer dans les paramètres de votre compte)
+
+## Votre première requête
+
+```bash
+curl https://api.example.com/v1/ping \
+  -H "Authorization: Bearer VOTRE_CLE_API"
+```
+
+Réponse attendue :
+
+```json
+{ "status": "ok" }
+```
+
+<Callout type="warning" title="Ne commitez jamais votre clé API">
+  Stockez-la dans une variable d'environnement. Ne l'inscrivez pas en dur dans le code.
+</Callout>
+
+## Et ensuite
+
+* Parcourez la [référence API](/fr/api) pour voir tous les endpoints.
+* Abonnez-vous aux webhooks (détaillés dans la référence).

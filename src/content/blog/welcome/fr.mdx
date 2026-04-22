@@ -1,0 +1,47 @@
+---
+title: 'Bienvenue sur votre nouveau site'
+summary: 'Tour d''horizon rapide de la structure de ce template Astro et de la façon de l''adapter.'
+date: 2026-04-01
+author: L'équipe
+image: ./thumbnail.jpg
+similarPosts:
+  - choosing-content-collections
+---
+
+Ceci est un article d'exemple. Tout ce que vous voyez (titres, paragraphes, listes, blocs de code, encarts) provient d'un seul fichier MDX dans `src/content/blog/<slug>/<lang>.mdx`.
+
+## Ce qui compose un article
+
+Chaque article commence par un bloc de front matter :
+
+```yaml
+---
+title: "..."
+summary: "..."
+date: 2026-04-01
+image: ./cover.jpg
+author: Votre nom
+similarPosts:
+  - autre-slug
+---
+```
+
+Le `summary` apparaît dans la liste des articles, à côté de l'image. La liste `similarPosts` fait apparaître des liens vers d'autres articles en bas de la page.
+
+## Contenu riche, sans import
+
+N'importe quel composant Astro de `src/components/` est utilisable directement dans le MDX. Vous pouvez insérer un encart :
+
+<Callout type="tip" title="Encarts">
+  Ce bloc a été écrit avec `<Callout type="tip" title="Encarts">` dans le fichier MDX.
+</Callout>
+
+…ou une bannière CTA, un split, une vidéo YouTube, etc.
+
+## Sommaire
+
+Chaque H2 de l'article devient automatiquement une entrée du sommaire à droite. Sur mobile, le sommaire se replie en menu déroulant pour ne pas gêner la lecture.
+
+## Et ensuite
+
+Dupliquez ce fichier, changez le slug (le nom du dossier), et vous avez un nouvel article. Bonne écriture !

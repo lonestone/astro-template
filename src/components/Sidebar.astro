@@ -1,0 +1,135 @@
+---
+import { getCollection } from 'astro:content'
+import { getTranslations, getLangFromUrl, getLangFromId, getSlugFromId } from '../utils/i18n'
+import NavLink from './NavLink.astro'
+
+interface Props {
+  section: 'docs' | 'guides' | 'developers' | 'api'
+}
+
+const { section } = Astro.props
+
+const lang = getLangFromUrl(Astro.url)
+const t = await getTranslations(lang)
+
+interface SidebarSection {
+  title: string
+  basePath: string
+  links: { slug: string; label: string }[]
+  code?: boolean
+}
+
+function sortEntries(entries: { id: string; data: { title: string; order?: number } }[]) {
+  return entries.sort((a, b) => {
+    const aOrder = a.data.order ?? Infinity
+    const bOrder = b.data.order ?? Infinity
+    if (aOrder !== bOrder) return aOrder - bOrder
+    return a.data.title.localeCompare(b.data.title)
+  })
+}
+
+function entriesToLinks(entries: { id: string; data: { title: string } }[]) {
+  return entries.map((e) => {
+    const slug = getSlugFromId(e.id)
+    return { slug: slug === 'index' ? '' : slug, label: e.data.title }
+  })
+}
+
+const sections: SidebarSection[] = []
+
+if (section === 'docs' || section === 'guides') {
+  const allDocs = await getCollection('docs')
+  const docs = sortEntries(allDocs.filter((e) => getLangFromId(e.id) === lang))
+
+  const allGuides = await getCollection('guides')
+  const guides = sortEntries(allGuides.filter((e) => getLangFromId(e.id) === lang))
+
+  sections.push(
+    { title: t.documentation, basePath: '/docs', links: entriesToLinks(docs) },
+    { title: t.guides, basePath: '/guides', links: entriesToLinks(guides) }
+  )
+} else if (section === 'developers') {
+  const allDevs = await getCollection('developers')
+  const devs = sortEntries(allDevs.filter((e) => getLangFromId(e.id) === lang))
+
+  sections.push({
+    title: t.developers,
+    basePath: '/developers',
+    links: entriesToLinks(devs),
+  })
+} else if (section === 'api') {
+  // Introduction link (linked directly to /api).
+  sections.push({
+    title: t.api.reference,
+    basePath: '/api',
+    links: [{ slug: '', label: t.api.introduction }],
+  })
+
+  const allApiEntries = await getCollection('api')
+  const apiEntries = allApiEntries.filter(
+    (e) => getLangFromId(e.id) === lang && e.data.entity && e.data.category
+  )
+
+  const allCategories = await getCollection('api-categories')
+  const categories = allCategories
+    .filter((e) => getLangFromId(e.id) === lang)
+    .sort((a, b) => (a.data.order ?? Infinity) - (b.data.order ?? Infinity))
+
+  for (const cat of categories) {
+    const key = getSlugFromId(cat.id)
+    const entries = apiEntries
+      .filter((e) => e.data.category === key)
+      .sort((a, b) => (a.data.entity ?? '').localeCompare(b.data.entity ?? ''))
+
+    if (entries.length > 0) {
+      sections.push({
+        title: cat.data.title,
+        basePath: '/api',
+        links: entries.map((e) => ({
+          slug: getSlugFromId(e.id),
+          label: e.data.entity!,
+        })),
+        code: true,
+      })
+    }
+  }
+}
+---
+
+<aside class="hidden md:block w-65 min-w-65 border-r border-border p-6 pr-4 bg-bg-secondary h-[calc(100vh-56px)] overflow-y-auto sticky top-14" data-sidebar>
+  <nav>
+    {sections.map((s, i) => (
+      <div class={i === 0 && section === 'api' ? '' : 'mb-6'}>
+        {i === 0 && section === 'api' ? (
+          /* API intro link (no section heading) */
+          <div class="mb-3">
+            <h3 class="text-xs uppercase tracking-wide text-text-secondary mb-2 border-none p-0">{s.title}</h3>
+            {s.links.map(link => (
+              <NavLink exact path={link.slug ? `${s.basePath}/${link.slug}` : s.basePath}>{link.label}</NavLink>
+            ))}
+          </div>
+        ) : s.code ? (
+          /* API entity groups (monospace labels) */
+          <>
+            <h4 class="text-xs text-text-secondary mt-3 mb-1 font-medium">{s.title}</h4>
+            <div class="flex flex-col">
+              {s.links.map(link => (
+                <NavLink exact path={`${s.basePath}/${link.slug}`} code>{link.label}</NavLink>
+              ))}
+            </div>
+          </>
+        ) : (
+          /* Standard sections (docs, guides, developers) */
+          <>
+            <h3 class="text-xs uppercase tracking-wide text-text-secondary mb-2 border-none p-0">{s.title}</h3>
+            <div class="flex flex-col">
+              {s.links.map(link => (
+                <NavLink exact path={link.slug ? `${s.basePath}/${link.slug}` : s.basePath}>{link.label}</NavLink>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    ))}
+  </nav>
+</aside>

@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+import { type Lang, getSlugFromId } from '../utils/i18n'
+
+interface Props {
+  post: CollectionEntry<'blog'>
+  lang: Lang
+}
+
+const { post, lang } = Astro.props
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+---
+
+<a
+  href={`/${lang}/blog/${getSlugFromId(post.id)}`}
+  class="group block overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all hover:border-primary hover:shadow-lg no-underline"
+>
+  {post.data.image ? (
+    <Image
+      src={post.data.image}
+      alt=""
+      class="aspect-video w-full object-cover transition-transform group-hover:scale-105"
+    />
+  ) : (
+    <div class="aspect-video w-full bg-gray-100" />
+  )}
+  <div class="p-5">
+    {post.data.date && (
+      <p class="mb-2 text-sm text-text-secondary">{formatDate(post.data.date)}</p>
+    )}
+    <h2 class="text-lg font-medium leading-snug group-hover:text-primary transition-colors">
+      {post.data.title}
+    </h2>
+    <p class="mt-2 text-sm text-text-secondary line-clamp-3">{post.data.summary}</p>
+  </div>
+</a>

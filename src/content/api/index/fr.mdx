@@ -1,0 +1,26 @@
+---
+title: Référence API
+description: Toutes les ressources exposées par l'API publique.
+---
+
+## Authentification
+
+Chaque requête doit inclure un header `Authorization: Bearer <KEY>`. Les clés se génèrent depuis les paramètres du compte.
+
+```bash
+curl https://api.example.com/v1/users/me \
+  -H "Authorization: Bearer VOTRE_CLE_API"
+```
+
+## URL de base
+
+**Production :** [`https://api.example.com/v1`](https://api.example.com/v1)
+
+## Limites de débit
+
+* 60 requêtes par minute et par clé.
+* Les réponses incluent les headers `X-RateLimit-Remaining` et `X-RateLimit-Reset`.
+
+## Ressources
+
+Parcourez la barre latérale à gauche pour voir chaque entité. Chaque page détaille les champs, les relations et quelques exemples de requêtes.

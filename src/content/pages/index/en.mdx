@@ -1,0 +1,136 @@
+---
+title: 'Astro Template: a modern site template'
+---
+
+<Hero
+  title="Everything your team needs, in one place"
+  subtitle="A modern starter template for product and service websites. Fast, multilingual, content-driven."
+  buttonText="Get started"
+  buttonHref="/en/contact"
+  smallText="Free template. MIT license."
+/>
+
+<Section fullWidth class="mt-16">
+  <ClientLogos />
+</Section>
+
+<OffersSection
+  subtitle="Two ways to take the next step"
+  title="Pick the path that fits your team"
+>
+  <OfferCard title="Self-serve" href="/en/docs" buttonLabel="Read the docs" icon="/favicon.svg">
+    Explore the product on your own with a complete set of guides and reference docs.
+
+    <CheckItem label="Step-by-step guides" />
+
+    <CheckItem label="API reference" />
+
+    <CheckItem label="Copy-paste examples" />
+  </OfferCard>
+
+  <OfferCard title="Talk to us" href="/en/contact" buttonLabel="Book a call" icon="/favicon.svg">
+    Work with the team to figure out the right setup for your organization.
+
+    <CheckItem label="30-min discovery call" />
+
+    <CheckItem label="Tailored recommendations" />
+
+    <CheckItem label="Priority onboarding" />
+  </OfferCard>
+
+  <OfferCard title="Enterprise" href="/en/contact" buttonLabel="Get a quote" icon="/favicon.svg">
+    Custom plans for larger organizations with specific security, compliance and support needs.
+
+    <CheckItem label="SSO and audit logs" />
+
+    <CheckItem label="Dedicated account manager" />
+
+    <CheckItem label="Custom SLAs" />
+  </OfferCard>
+</OffersSection>
+
+<ProblemsSection title="Tailor-made for Astro, compatible with AstroCMS out of the box">
+  <ProblemItem>
+    ⚙️
+
+    Every Astro integration you need (MDX, sitemap, Netlify) pre-wired
+  </ProblemItem>
+
+  <ProblemItem>
+    📝
+
+    Editor-friendly by design, ready for AstroCMS without extra setup
+  </ProblemItem>
+
+  <ProblemItem>
+    🌍
+
+    Multilingual routing baked in: add a new locale with one config line
+  </ProblemItem>
+
+  <ProblemItem>
+    🔎
+
+    SEO done for you: sitemap, canonicals, OG tags, breadcrumbs, `.md` mirrors
+  </ProblemItem>
+
+  <ProblemItem>
+    🤝
+
+    Developers and editors share the same files: one source of truth, zero divergence
+  </ProblemItem>
+</ProblemsSection>
+
+<SplitSection>
+  <Fragment slot="left">
+    ## Pair it with AstroCMS
+
+    This template ships with [AstroCMS](https://github.com/lonestone/astrocms) pre-configured. Editors update content through a web UI and the CMS commits the MDX changes straight to Git. No database, no backend, no risk of divergence between staging and production.
+
+    Spin it up with one command: `npm run astrocms`.
+  </Fragment>
+
+  <Fragment slot="right">
+    ## Built and maintained by Lonestone
+
+    The template is maintained by [Lonestone](https://lonestone.io), a product studio that uses it daily to ship marketing and documentation sites for clients. Updates land here as we improve our own sites, and you benefit from them for free.
+  </Fragment>
+</SplitSection>
+
+<SplitSection align="start">
+  <Fragment slot="left">
+    ## FAQ
+
+    *A few quick answers*
+
+    Can't find what you're looking for? [Get in touch](/en/contact).
+  </Fragment>
+
+  <Fragment slot="right">
+    <FaqItem question="Is this template free to use?">
+      Yes. It is released under the MIT license. Use it as-is for personal or commercial projects.
+    </FaqItem>
+
+    <FaqItem question="Do I have to keep every section?">
+      No. Every collection (blog, case studies, docs, etc.) is optional. Delete the ones you don't need and the rest keeps working.
+    </FaqItem>
+
+    <FaqItem question="How do I add a new language?">
+      Add the locale to `website.config.ts`, create a translation file in `src/content/translations/<lang>.yaml`, and start adding content files suffixed with `/<lang>.mdx`.
+    </FaqItem>
+
+    <FaqItem question="Does AstroCMS require a backend?">
+      No. [AstroCMS](https://github.com/lonestone/astrocms) edits the MDX files directly and can commit changes back to Git. Nothing else is needed.
+    </FaqItem>
+  </Fragment>
+</SplitSection>
+
+<CtaBanner
+  title="Ready to ship?"
+  primaryLabel="Read the docs"
+  primaryHref="/en/docs"
+  secondaryLabel="Contact us"
+  secondaryHref="/en/contact"
+>
+  Everything you need to launch a polished product or service site in a weekend.
+</CtaBanner>

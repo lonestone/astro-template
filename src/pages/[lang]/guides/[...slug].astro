@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from 'astro:content'
+import GuidePage from '../../../layouts/GuidePage.astro'
+import { mdxComponents } from '../../../components'
+import config from '../../../../website.config'
+
+export async function getStaticPaths() {
+  const paths = []
+  for (const lang of config.langs) {
+    const entries = await getCollection('guides', (e) => e.id.endsWith(`/${lang}`))
+    for (const entry of entries) {
+      const slug = entry.id.replace(`/${lang}`, '')
+      paths.push({
+        params: { lang, slug: slug === 'index' ? undefined : slug },
+        props: { entry },
+      })
+    }
+  }
+  return paths
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+---
+
+<GuidePage title={entry.data.title} section="guides" description={entry.data.description}>
+  <Content components={mdxComponents} />
+</GuidePage>

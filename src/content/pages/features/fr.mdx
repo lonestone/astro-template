@@ -1,0 +1,105 @@
+---
+title: Fonctionnalités
+---
+
+<CenteredSection class="max-w-3xl mx-auto">
+  <CirclesAnimation class="w-40 mb-5" />
+
+  <Tag color="yellow">Fonctionnalités</Tag>
+
+  ## Tout ce qu'il faut pour livrer un site soigné
+
+  Un ensemble complet de briques : collections de contenu, i18n, tuyauterie SEO, composants réutilisables, prêts à être personnalisés.
+</CenteredSection>
+
+<SplitSection>
+  <Fragment slot="left">
+    ## Orienté contenu par design
+
+    Chaque page tire son corps d'un fichier MDX dans `src/content/`. Les schémas sont validés par Zod : les erreurs de front matter remontent au build, pas en prod.
+  </Fragment>
+
+  <Fragment slot="right">
+    ## Multilingue par défaut
+
+    Suffixez chaque fichier avec `/<lang>.mdx` et Astro génère la bonne URL. Changez le toggle de langue dans le header pour en ajouter d'autres.
+  </Fragment>
+</SplitSection>
+
+<SplitSection>
+  <Fragment slot="left">
+    ## Composants prêts à l'emploi
+
+    Hero, CTA, cartes de pricing, encarts, grilles de fonctionnalités : tous les composants du site sont disponibles dans n'importe quel fichier MDX. Sans import.
+  </Fragment>
+
+  <Fragment slot="right">
+    ## Prêt à déployer
+
+    Livré avec l'adaptateur Netlify, sitemap automatique, fichiers `_redirects` et `_headers`. Clonez, poussez, c'est en ligne.
+  </Fragment>
+</SplitSection>
+
+<CtaBanner
+  title="Envie de voir ça en action ?"
+  primaryLabel="Lire les docs"
+  primaryHref="/fr/docs"
+  secondaryLabel="Nous contacter"
+  secondaryHref="/fr/contact"
+>
+  Faites le tour de chaque fonctionnalité et apprenez à les adapter à votre produit.
+</CtaBanner>
+
+<Section class="mt-24 text-center">
+  ## Et aussi
+</Section>
+
+<GridSection class="mt-12">
+  <FeatureItem icon="🚀" title="Génération statique">
+    HTML pré-rendu au build. Les pages s'affichent en millisecondes.
+  </FeatureItem>
+
+  <FeatureItem icon="🌍" title="Routing i18n">
+    URLs préfixées par locale, balises hreflang automatiques, toggle de langue.
+  </FeatureItem>
+
+  <FeatureItem icon="✍️" title="Contenu MDX">
+    Markdown + composants. Le meilleur des deux mondes.
+  </FeatureItem>
+
+  <FeatureItem icon="🗂" title="Collections typées">
+    Les schémas Zod garantissent la cohérence de chaque entrée MDX.
+  </FeatureItem>
+
+  <FeatureItem icon="🖥" title="CMS headless">
+    AstroCMS est inclus. Modifiez le contenu via une interface web, sans base de données.
+  </FeatureItem>
+
+  <FeatureItem icon="🔎" title="SEO intégré">
+    Sitemap, balises canoniques, previews sociales, breadcrumbs structurés.
+  </FeatureItem>
+
+  <FeatureItem icon="🤖" title="Compatible LLM">
+    Version `.md` de chaque page + `/llms.txt` pour les crawlers IA.
+  </FeatureItem>
+
+  <FeatureItem icon="🎨" title="Tailwind v4">
+    Styling utilitaire avec variables CSS pour un thème facile à modifier.
+  </FeatureItem>
+
+  <FeatureItem icon="🧩" title="Composants prêts">
+    Hero, CTA, pricing, FAQ. Tout pour assembler une page.
+  </FeatureItem>
+
+  <FeatureItem icon="📄" title="Pages légales incluses">
+    Mentions légales, CGV et politique de confidentialité de base à adapter.
+  </FeatureItem>
+
+  <FeatureItem icon="🚦" title="Redirections statiques">
+    Redirections déclaratives dans `src/redirects.ts`. Les wildcards vont dans `public/_redirects`.
+  </FeatureItem>
+
+  <FeatureItem icon="🛠" title="Open source">
+    Licence MIT. Forkez, cassez, appropriez-vous le code.
+  </FeatureItem>
+</GridSection>

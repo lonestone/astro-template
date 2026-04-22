@@ -1,0 +1,47 @@
+---
+title: 'Pourquoi les content collections sont clés'
+summary: 'Explication courte de la façon dont les collections de ce template gardent votre contenu cohérent à mesure qu''il grandit.'
+date: 2026-03-15
+author: L'équipe
+image: ./thumbnail.jpg
+similarPosts:
+  - welcome
+---
+
+Plus un site grandit, plus il est difficile de garder son contenu cohérent. Différents auteurs, différents styles, différents champs. Un mois plus tard, certains articles ont une image de couverture, d'autres non. Certains docs ont un champ `order`, d'autres l'ignorent.
+
+Ce template s'appuie sur les **content collections** d'Astro pour garder tout ça prévisible.
+
+## Qu'est-ce qu'une collection ?
+
+Une collection est un dossier sous `src/content/` où chaque fichier doit respecter une forme précise. La forme est déclarée dans `src/content.config.ts` avec Zod :
+
+```ts
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      summary: z.string(),
+      date: z.coerce.date().optional(),
+      image: image().optional(),
+    }),
+})
+```
+
+Si vous oubliez un champ requis (par exemple `summary`), le build échoue avec un message clair. Pas de dérive silencieuse.
+
+## Pourquoi c'est important
+
+Quand vous savez que chaque article de blog a un `title`, un `summary` et éventuellement une `date`, écrire l'index du blog devient trivial :
+
+```astro
+const posts = await getCollection('blog')
+posts.sort((a, b) => b.data.date - a.data.date)
+```
+
+Pareil pour les docs, les guides, les cas clients, les entités API, etc. Chaque collection a exactement les champs qu'il lui faut, validés en amont.
+
+## En résumé
+
+Si vous ne devez retenir qu'une chose : **ne contournez pas les collections**. Ajoutez de nouveaux champs au schéma, remplissez-les sur chaque entrée, et laissez le compilateur vous signaler ce qui manque. Votre futur vous vous remerciera.

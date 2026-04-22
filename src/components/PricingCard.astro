@@ -1,0 +1,55 @@
+---
+/**
+ * A pricing plan card. Exposes a typed API so MDX callers never need to
+ * reach for inline HTML or Tailwind classes: price, unit, description,
+ * CTA button and a list of features (via the default slot, typically
+ * filled with <CheckItem />).
+ */
+import Button from './Button.astro'
+
+interface Props {
+  title: string
+  price: string
+  priceUnit?: string
+  description: string
+  featured?: boolean
+  ctaLabel: string
+  ctaHref: string
+  ctaVariant?: 'yellow' | 'orange' | 'primary' | 'outline-primary' | 'outline'
+}
+
+const {
+  title,
+  price,
+  priceUnit,
+  description,
+  featured = false,
+  ctaLabel,
+  ctaHref,
+  ctaVariant = 'yellow',
+} = Astro.props
+---
+
+<div class:list={[
+  'rounded-xl p-6 flex flex-col',
+  featured ? 'bg-primary text-white ring-2 ring-primary' : 'bg-white',
+]}>
+  <h3 class="text-xl font-bold mb-2 mt-0">{title}</h3>
+  <p class:list={['text-lg mb-6', featured ? 'text-white/80' : 'text-text-secondary']}>
+    <span class="text-3xl font-bold">{price}</span>{priceUnit && <> {priceUnit}</>}
+  </p>
+  <p class:list={['mb-6', featured ? 'text-white/80' : 'text-text-secondary']}>
+    {description}
+  </p>
+  <div class="space-y-2 flex-1">
+    <slot />
+  </div>
+  <div class="mt-6">
+    <Button
+      href={ctaHref}
+      label={ctaLabel}
+      variant={ctaVariant}
+      class="block w-full text-center"
+    />
+  </div>
+</div>

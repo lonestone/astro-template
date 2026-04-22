@@ -1,0 +1,26 @@
+---
+title: 'API Reference'
+description: 'Every resource exposed by the public API.'
+---
+
+## Authentication
+
+Every request must include an `Authorization: Bearer <KEY>` header. Keys are generated from the account settings page.
+
+```bash
+curl https://api.example.com/v1/users/me \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+## Base URL
+
+**Production:** `https://api.example.com/v1`
+
+## Rate limits
+
+- 60 requests per minute, per key.
+- Responses include `X-RateLimit-Remaining` and `X-RateLimit-Reset` headers.
+
+## Resources
+
+Use the sidebar on the left to browse every entity. Each entity page lists its fields, relationships, and a few example queries.

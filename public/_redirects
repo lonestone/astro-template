@@ -1,0 +1,5 @@
+# Netlify redirects. Root '/' redirects to the user's browser language.
+# The `!` forces the rule even when a file exists at '/'.
+# See https://docs.netlify.com/routing/redirects/redirect-options/#country-language-based-redirects
+/  /fr  302!  Language=fr
+/  /en  302!

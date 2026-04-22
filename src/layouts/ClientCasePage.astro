@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { render } from 'astro:content'
+import { Image } from 'astro:assets'
+import BlogLayout from './BlogLayout.astro'
+import BlogSidebar from '../components/BlogSidebar.astro'
+import { mdxComponents } from '../components'
+import Breadcrumb from '../components/Breadcrumb.astro'
+import { type Lang, getTranslations, langPath } from '../utils/i18n'
+
+interface Props {
+  item: CollectionEntry<'client-cases'>
+  lang: Lang
+}
+
+const { item, lang } = Astro.props
+const t = await getTranslations(lang)
+const { Content, headings } = await render(item)
+---
+
+<BlogLayout title={item.data.title}>
+  <article class="min-w-0 flex-1">
+    <header class="mb-10 pb-6 border-b border-gray-100">
+      <Breadcrumb category={t.clientCases.label} categoryUrl={langPath(lang, '/client-cases')} title={item.data.title} hideTitle class="mb-3" />
+      <h1 class="mb-4 font-medium text-3xl md:text-4xl lg:text-5xl">
+        {item.data.title}
+      </h1>
+      <p class="text-lg text-gray-500 mb-4">{item.data.summary}</p>
+      {(item.data.sector || item.data.teamSize) && (
+        <p class="text-sm text-gray-400">
+          {item.data.sector && <span>{t.clientCases.sector}: {item.data.sector}</span>}
+          {item.data.sector && item.data.teamSize && <span> | </span>}
+          {item.data.teamSize && <span>{t.clientCases.teamSize}: {item.data.teamSize} {t.clientCases.employees}</span>}
+        </p>
+      )}
+    </header>
+    <div>
+      <Content components={mdxComponents} />
+    </div>
+  </article>
+  <aside class="md:w-80 md:shrink-0 lg:w-88">
+    {item.data.logo && <Image src={item.data.logo} alt="" class="h-16 mb-6" />}
+    <BlogSidebar headings={headings} />
+  </aside>
+</BlogLayout>

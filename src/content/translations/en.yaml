@@ -1,0 +1,50 @@
+languageName: English
+documentation: Documentation
+guides: Guides
+developers: Developers
+terms: Legal Notice
+bookDemo: Contact us
+features: Features
+pricing: Pricing
+contact: Contact
+support: Support
+about: About
+privacyPolicy: Privacy Policy
+termsOfSale: Terms of Sale
+updatedOn: Updated on
+
+blog:
+  label: Blog
+  title: Blog
+  subtitle: News, updates and insights.
+  similarPosts: Continue reading
+
+clientCases:
+  label: Case Studies
+  title: Case Studies
+  subtitle: How teams use our product to ship better work.
+  sector: Sector
+  teamSize: Team size
+  employees: employees
+
+cta:
+  title: Ready to get started?
+  description: Join the teams that already made the move.
+  button: Contact us
+
+sidebar:
+  toc: Table of contents
+  tagline: A modern solution for modern teams.
+  discover: Learn more
+
+api:
+  reference: API Reference
+  introduction: Introduction
+  fieldLabel: Field
+  typeLabel: Type
+  descriptionLabel: Description
+
+footer:
+  product: Product
+  resources: Resources
+  company: Company

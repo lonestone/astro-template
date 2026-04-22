@@ -1,0 +1,33 @@
+---
+title: Webhook
+description: Une URL qui reçoit les payloads d'événements lorsque votre compte change d'état.
+entity: webhook
+category: automation
+---
+
+## Champs
+
+<EntityFields
+  fields={[
+  { name: 'id', type: 'uuid', description: 'Identifiant unique du webhook' },
+  { name: 'url', type: 'String', description: 'URL de destination recevant les requêtes POST' },
+  { name: 'events', type: 'String[]', description: 'Noms d\'événements écoutés par ce webhook' },
+  { name: 'active', type: 'Boolean', description: 'Si le webhook livre actuellement les événements' },
+]}
+/>
+
+## Livraison
+
+À chaque événement correspondant, le produit envoie une requête `POST` à `url` avec un corps JSON :
+
+```json
+{
+  "event": "user.created",
+  "payload": { /* snapshot de l'entité */ },
+  "deliveredAt": "2026-04-01T10:15:00Z"
+}
+```
+
+<Callout type="info" title="Réessais">
+  Les livraisons en échec sont réessayées jusqu'à 5 fois avec un back-off exponentiel.
+</Callout>

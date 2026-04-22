@@ -1,0 +1,47 @@
+---
+title: 'Why content collections matter'
+summary: 'A short explanation of how the collections in this template keep your content consistent as it grows.'
+date: 2026-03-15
+author: The team
+image: ./thumbnail.jpg
+similarPosts:
+  - welcome
+---
+
+As a site grows, keeping its content consistent becomes harder and harder. Different authors, different styles, different required fields. A month in, some blog posts have a cover image, others don't. Some docs have an `order` field, others ignore it.
+
+This template leans on **Astro content collections** to keep everything predictable.
+
+## What is a collection?
+
+A collection is a folder under `src/content/` where each file must follow a specific shape. The shape is declared in `src/content.config.ts` using Zod:
+
+```ts
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      summary: z.string(),
+      date: z.coerce.date().optional(),
+      image: image().optional(),
+    }),
+})
+```
+
+If you forget a required field (say, `summary`), the build fails with a clear error. No silent drift.
+
+## Why this matters
+
+When you know every blog post has a `title`, a `summary`, and maybe a `date`, writing the blog index is trivial:
+
+```astro
+const posts = await getCollection('blog')
+posts.sort((a, b) => b.data.date - a.data.date)
+```
+
+Same for docs, guides, case studies, API entities, and so on. Each collection has exactly the fields it needs, validated up front.
+
+## The punchline
+
+If you only remember one thing: **don't bypass collections**. Add new fields to the schema, fill them in on every entry, and let the compiler tell you when something is missing. Your future self will thank you.

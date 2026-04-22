@@ -1,0 +1,35 @@
+---
+title: 'User'
+description: 'Represents an end user of your account. Users are created on first sign-in.'
+entity: 'user'
+category: 'core'
+---
+
+## Fields
+
+<EntityFields
+  fields={[
+    { name: 'id', type: 'uuid', description: 'Unique identifier for the user' },
+    { name: 'email', type: 'String', description: 'Primary email address, used for login' },
+    { name: 'name', type: 'String', description: 'Display name' },
+    { name: 'createdAt', type: 'DateTime', description: 'Timestamp of account creation' },
+  ]}
+/>
+
+## Example request
+
+```bash
+curl https://api.example.com/v1/users/me \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+Example response:
+
+```json
+{
+  "id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+  "email": "ada@example.com",
+  "name": "Ada Lovelace",
+  "createdAt": "2026-04-01T10:15:00Z"
+}
+```

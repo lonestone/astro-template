@@ -1,0 +1,88 @@
+---
+import config from '../../website.config'
+import {
+  getTranslations,
+  getLangFromUrl,
+  getLangHref,
+  langPath,
+  type Lang,
+} from '../utils/i18n'
+import Logo from './Logo.astro'
+
+const currentPath = Astro.url.pathname
+const lang = getLangFromUrl(Astro.url)
+const t = await getTranslations(lang)
+
+const lp = (path: string) => langPath(lang, path)
+
+const linkClass = 'no-underline hover:underline'
+
+// Build one entry per locale. Each option uses its own native name
+// (so "Français" appears as "Français" regardless of the current UI language).
+const langOptions = await Promise.all(
+  config.langs.map(async (l) => {
+    const t = await getTranslations(l as Lang)
+    return {
+      lang: l as Lang,
+      name: (t.languageName as string) ?? l,
+      href: getLangHref(currentPath, lang, l as Lang),
+    }
+  })
+)
+---
+
+<footer class="border-t border-border bg-bg-secondary py-12 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-text-secondary">
+
+      <div class="flex flex-col gap-4">
+        <a href={lp('')} class="no-underline hover:no-underline">
+          <Logo class="h-6" />
+        </a>
+        {langOptions.length > 1 && (
+          <select
+            aria-label="Language"
+            class="mt-4 self-start text-xs font-semibold px-2 py-1 border border-border rounded bg-white text-text-secondary hover:bg-border cursor-pointer"
+            data-lang-select
+          >
+            {langOptions.map((o) => (
+              <option value={o.href} selected={o.lang === lang}>{o.name}</option>
+            ))}
+          </select>
+        )}
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="font-medium text-text-main">{t.footer.product}</span>
+        <a href={lp('/features')} class={linkClass}>{t.features}</a>
+        <a href={lp('/client-cases')} class={linkClass}>{t.clientCases.label}</a>
+        <a href={lp('/pricing')} class={linkClass}>{t.pricing}</a>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="font-medium text-text-main">{t.footer.resources}</span>
+        <a href={lp('/docs')} class={linkClass}>{t.documentation}</a>
+        <a href={lp('/developers')} class={linkClass}>{t.developers}</a>
+        <a href={lp('/blog')} class={linkClass}>{t.blog.label}</a>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="font-medium text-text-main">{t.footer.company}</span>
+        <a href={lp('/contact')} class={linkClass}>{t.contact}</a>
+        <a href={lp('/legal')} class={linkClass}>{t.terms}</a>
+        <a href={lp('/privacy')} class={linkClass}>{t.privacyPolicy}</a>
+        <a href={lp('/terms')} class={linkClass}>{t.termsOfSale}</a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navigate when the user picks a language in the footer select.
+  document.querySelectorAll<HTMLSelectElement>('[data-lang-select]').forEach((select) => {
+    select.addEventListener('change', () => {
+      if (select.value) window.location.href = select.value
+    })
+  })
+</script>

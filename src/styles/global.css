@@ -1,0 +1,105 @@
+@import 'tailwindcss';
+
+@theme {
+  /* System font stack: zero network request, looks native on every OS.
+     Swap for a webfont (e.g. @import 'tailwindcss/forms' + @fontsource/inter) to customize. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  /* Brand colors. Tweak these two to rebrand the template. */
+  --color-primary: hsla(221, 83%, 53%, 1);
+  --color-primary-light: hsla(221, 83%, 63%, 1);
+
+  /* Neutral gray scale (slightly cool). */
+  --color-gray-50: hsl(220, 20%, 98%);
+  --color-gray-100: hsl(220, 14%, 92%);
+  --color-gray-200: hsl(220, 13%, 86%);
+  --color-gray-300: hsl(220, 13%, 74%);
+  --color-gray-400: hsl(220, 13%, 60%);
+  --color-gray-500: hsl(220, 12%, 48%);
+  --color-gray-600: hsl(220, 14%, 32%);
+  --color-gray-700: hsl(220, 15%, 20%);
+  --color-gray-800: hsl(220, 16%, 14%);
+  --color-gray-900: hsl(220, 18%, 9%);
+
+  /* Semantic aliases used across components. */
+  --color-bg-main: hsl(220, 20%, 98%);
+  --color-bg-secondary: hsl(220, 20%, 98%);
+  --color-text-main: hsl(220, 18%, 9%);
+  --color-text-secondary: hsl(220, 12%, 48%);
+  --color-border: hsl(220, 13%, 86%);
+  --color-code-bg: hsl(220, 14%, 92%);
+  --color-callout-info: #d0ebff;
+  --color-callout-warning: #fff3bf;
+  --color-callout-tip: #d3f9d8;
+
+  --animate-marquee: marquee var(--marquee-duration, 20s) linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+body {
+  @apply text-text-main leading-relaxed antialiased;
+}
+
+/* Markdown prose styles, scoped to `.md` (added by rehype-md-class.ts) so
+   they never bleed into component markup. */
+h1.md {
+  @apply mt-10 mb-5 text-4xl font-bold scroll-mt-24;
+}
+h2.md {
+  @apply mt-10 mb-4 text-3xl font-medium scroll-mt-24;
+}
+h3.md {
+  @apply mt-10 mb-3 text-2xl font-medium scroll-mt-24;
+}
+h4.md {
+  @apply mt-8 mb-3 text-xl font-medium scroll-mt-24;
+}
+p.md {
+  @apply mb-5 leading-relaxed;
+}
+ul.md {
+  @apply mb-5 list-disc pl-6;
+}
+ol.md {
+  @apply mb-5 list-decimal pl-6;
+}
+li.md {
+  @apply mb-1;
+}
+code.md {
+  @apply rounded bg-gray-100 px-1.5 py-0.5 text-sm;
+}
+pre.md {
+  @apply mb-5 overflow-x-auto rounded-lg bg-gray-900 p-5 text-gray-200;
+}
+pre.md code {
+  @apply bg-transparent p-0;
+}
+a.md {
+  @apply text-primary underline underline-offset-2;
+}
+blockquote.md {
+  @apply my-5 border-l-3 border-gray-600 bg-gray-50 p-4 text-lg italic text-gray-500;
+}
+blockquote.md p:last-child {
+  @apply mb-0;
+}
+table.md {
+  @apply my-8 block overflow-x-auto border-collapse -mx-6 px-6 sm:mx-0 sm:px-0;
+  max-width: 100vw;
+}
+th.md {
+  @apply border-b-2 border-gray-200 bg-gray-50 px-5 py-3 text-left font-semibold;
+}
+td.md {
+  @apply border-b border-gray-100 px-5 py-3;
+}

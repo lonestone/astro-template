@@ -1,0 +1,7 @@
+---
+// Fallback redirect for dev / non-Netlify environments.
+// In production, Netlify redirects `/` based on browser language
+// (see public/_redirects).
+import config from '../../website.config'
+return Astro.redirect(`/${config.defaultLang}`)
+---

@@ -1,0 +1,127 @@
+---
+title: 'Astro Template : un template de site moderne'
+---
+
+<Hero title="Tout ce qu'il faut à votre équipe, au même endroit" subtitle="Un template moderne pour les sites de produits et de services. Rapide, multilingue, orienté contenu." buttonText="Commencer" buttonHref="/fr/contact" smallText="Template gratuit. Licence MIT." />
+
+<Section fullWidth class="mt-16">
+  <ClientLogos />
+</Section>
+
+<OffersSection subtitle="Deux façons de passer à la suite" title="Choisissez l'approche adaptée à votre équipe">
+  <OfferCard title="Autonomie" href="/fr/docs" buttonLabel="Lire les docs" icon="/favicon.svg">
+    Explorez le produit à votre rythme grâce à un ensemble complet de guides et de références.
+
+    <CheckItem label="Guides pas à pas" />
+
+    <CheckItem label="Référence API" />
+
+    <CheckItem label="Exemples prêts à l'emploi" />
+  </OfferCard>
+
+  <OfferCard title="Échanger avec nous" href="/fr/contact" buttonLabel="Prendre rendez-vous" icon="/favicon.svg">
+    Travaillons ensemble pour définir le bon dispositif pour votre organisation.
+
+    <CheckItem label="Appel de découverte de 30 min" />
+
+    <CheckItem label="Recommandations sur mesure" />
+
+    <CheckItem label="Onboarding prioritaire" />
+  </OfferCard>
+
+  <OfferCard title="Entreprise" href="/fr/contact" buttonLabel="Demander un devis" icon="/favicon.svg">
+    Plans personnalisés pour les grandes structures avec besoins spécifiques en sécurité, conformité et support.
+
+    <CheckItem label="SSO et journaux d'audit" />
+
+    <CheckItem label="Interlocuteur dédié" />
+
+    <CheckItem label="SLA sur mesure" />
+  </OfferCard>
+</OffersSection>
+
+<ProblemsSection title="Taillé sur mesure pour Astro, compatible AstroCMS dès l'install">
+  <ProblemItem>
+    ⚙️
+
+    Toutes les intégrations Astro dont vous avez besoin (MDX, sitemap, Netlify) déjà câblées
+  </ProblemItem>
+
+  <ProblemItem>
+    📝
+
+    Pensé pour les éditeurs de contenu, prêt pour AstroCMS sans configuration supplémentaire
+  </ProblemItem>
+
+  <ProblemItem>
+    🌍
+
+    Routing multilingue natif : ajoutez une nouvelle langue en une ligne de config
+  </ProblemItem>
+
+  <ProblemItem>
+    🔎
+
+    SEO clé en main : sitemap, balises canoniques, OG, breadcrumbs, jumeaux `.md`
+  </ProblemItem>
+
+  <ProblemItem>
+    🤝
+
+    Développeurs et éditeurs partagent les mêmes fichiers : une seule source de vérité
+  </ProblemItem>
+</ProblemsSection>
+
+<SplitSection>
+  <Fragment slot="left">
+    ## Associez-le à AstroCMS
+
+    Ce template est livré avec [AstroCMS](https://github.com/lonestone/astrocms) pré-configuré. Les éditeurs modifient le contenu via une interface web et le CMS pousse les changements MDX directement dans Git. Pas de base de données, pas de backend, pas de divergence entre staging et prod.
+
+    Une commande suffit pour le lancer : `npm run astrocms`.
+  </Fragment>
+
+  <Fragment slot="right">
+    ## Conçu et maintenu par Lonestone
+
+    Le template est maintenu par [Lonestone](https://lonestone.io), un studio produit qui l'utilise au quotidien pour livrer des sites marketing et documentation à ses clients. Les améliorations arrivent ici au fil de nos propres sites, et vous en profitez gratuitement.
+  </Fragment>
+</SplitSection>
+
+<SplitSection align="start">
+  <Fragment slot="left">
+    ## FAQ
+
+    *Quelques réponses rapides*
+
+    Vous ne trouvez pas ? [Contactez-nous](/fr/contact).
+  </Fragment>
+
+  <Fragment slot="right">
+    <FaqItem question="Le template est-il libre d'utilisation ?">
+      Oui. Il est sous licence MIT. Utilisable tel quel pour des projets personnels ou commerciaux.
+    </FaqItem>
+
+    <FaqItem question="Dois-je garder toutes les sections ?">
+      Non. Chaque collection (blog, cas clients, docs, etc.) est optionnelle. Supprimez celles qui ne vous servent pas et le reste continue de fonctionner.
+    </FaqItem>
+
+    <FaqItem question="Comment ajouter une nouvelle langue ?">
+      Ajoutez la locale dans `website.config.ts`, créez `src/content/translations/<lang>.yaml`, puis ajoutez des fichiers de contenu suffixés par `/<lang>.mdx`.
+    </FaqItem>
+
+    <FaqItem question="AstroCMS a-t-il besoin d'un backend ?">
+      Non. [AstroCMS](https://github.com/lonestone/astrocms) édite directement les fichiers MDX et peut pousser les changements dans Git. Rien d'autre n'est nécessaire.
+    </FaqItem>
+  </Fragment>
+</SplitSection>
+
+<CtaBanner
+  title="Prêt à publier ?"
+  primaryLabel="Lire les docs"
+  primaryHref="/fr/docs"
+  secondaryLabel="Nous contacter"
+  secondaryHref="/fr/contact"
+>
+  Tout ce qu'il faut pour lancer un site produit ou service soigné en un week-end.
+</CtaBanner>

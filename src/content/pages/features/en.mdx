@@ -1,0 +1,105 @@
+---
+title: Features
+---
+
+<CenteredSection class="max-w-3xl mx-auto">
+  <CirclesAnimation class="w-40 mb-5" />
+
+  <Tag color="yellow">Features</Tag>
+
+  ## Everything you need to ship a polished site
+
+  A complete set of building blocks: content collections, i18n, SEO plumbing, and reusable components, all ready to be customized.
+</CenteredSection>
+
+<SplitSection>
+  <Fragment slot="left">
+    ## Content-driven by design
+
+    Every page pulls its body from an MDX file in `src/content/`. Schemas are enforced by Zod, so broken front matter surfaces at build time, not in production.
+  </Fragment>
+
+  <Fragment slot="right">
+    ## Multilingual out of the box
+
+    Suffix each content file with `/<lang>.mdx` and Astro generates the right URL. Swap the language toggle in the header to add more locales.
+  </Fragment>
+</SplitSection>
+
+<SplitSection>
+  <Fragment slot="left">
+    ## Drop-in components
+
+    Hero, CTA, pricing cards, callouts, feature grids: every component on this site is available from any MDX file. No import needed.
+  </Fragment>
+
+  <Fragment slot="right">
+    ## Ready to deploy
+
+    Ships with a Netlify adapter, automatic sitemap, `_redirects` and `_headers` files. Clone, push, done.
+  </Fragment>
+</SplitSection>
+
+<CtaBanner
+  title="Want to see it in action?"
+  primaryLabel="Read the docs"
+  primaryHref="/en/docs"
+  secondaryLabel="Talk to us"
+  secondaryHref="/en/contact"
+>
+  Get a tour of every feature and learn how to adapt it to your own product.
+</CtaBanner>
+
+<Section class="mt-24 text-center">
+  ## And also
+</Section>
+
+<GridSection class="mt-12">
+  <FeatureItem icon="🚀" title="Static site generation">
+    Pre-rendered HTML at build time. Pages load in milliseconds.
+  </FeatureItem>
+
+  <FeatureItem icon="🌍" title="i18n routing">
+    Default-locale prefixed URLs, automatic hreflang tags, language toggle.
+  </FeatureItem>
+
+  <FeatureItem icon="✍️" title="MDX content">
+    Markdown with components inside. The best of both worlds.
+  </FeatureItem>
+
+  <FeatureItem icon="🗂" title="Typed collections">
+    Zod schemas keep every MDX entry consistent.
+  </FeatureItem>
+
+  <FeatureItem icon="🖥" title="Headless CMS">
+    AstroCMS ships with the template. Edit content through a web UI without a database.
+  </FeatureItem>
+
+  <FeatureItem icon="🔎" title="SEO built in">
+    Sitemap, canonical tags, social previews, structured breadcrumbs.
+  </FeatureItem>
+
+  <FeatureItem icon="🤖" title="LLM-friendly">
+    `.md` mirrors of every page plus `/llms.txt` for AI crawlers.
+  </FeatureItem>
+
+  <FeatureItem icon="🎨" title="Tailwind v4">
+    Utility-first styling with CSS custom properties for easy theming.
+  </FeatureItem>
+
+  <FeatureItem icon="🧩" title="Drop-in components">
+    Hero, CTA, pricing, FAQ. Everything you need to assemble a page.
+  </FeatureItem>
+
+  <FeatureItem icon="📄" title="Legal pages included">
+    Starter legal, terms, and privacy pages you can adapt to your business.
+  </FeatureItem>
+
+  <FeatureItem icon="🚦" title="Static redirects">
+    Declarative redirects live in `src/redirects.ts`. Wildcards go in `public/_redirects`.
+  </FeatureItem>
+
+  <FeatureItem icon="🛠" title="Open source">
+    MIT license. Fork it, break it, make it yours.
+  </FeatureItem>
+</GridSection>

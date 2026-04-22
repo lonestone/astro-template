@@ -1,0 +1,77 @@
+---
+title: Tarifs
+---
+
+<CenteredSection>
+# Une tarification simple, sans surprise
+</CenteredSection>
+
+<GridSection cols={3}>
+  <PricingCard
+    title="Starter"
+    price="Gratuit"
+    priceUnit="à vie"
+    description="Pour démarrer en solo"
+    ctaLabel="Commencer"
+    ctaHref="/fr/contact"
+  >
+    <CheckItem label="Fonctionnalités clés" />
+    <CheckItem label="Jusqu'à 3 projets" />
+    <CheckItem label="Support communautaire" />
+  </PricingCard>
+
+  <PricingCard
+    title="Team"
+    price="19 €"
+    priceUnit="/ mois / utilisateur"
+    description="Pour les équipes qui grandissent"
+    featured
+    ctaLabel="Essai gratuit"
+    ctaHref="/fr/contact"
+    ctaVariant="orange"
+  >
+    <CheckItem label="Projets illimités" />
+    <CheckItem label="Support prioritaire" />
+    <CheckItem label="Intégrations avancées" />
+  </PricingCard>
+
+  <PricingCard
+    title="Entreprise"
+    price="Sur mesure"
+    description="Pour les grandes structures aux besoins spécifiques"
+    ctaLabel="Contacter les ventes"
+    ctaHref="/fr/contact"
+    ctaVariant="outline"
+  >
+    <CheckItem label="Tout Team inclus" />
+    <CheckItem label="SSO et journaux d'audit" />
+    <CheckItem label="Interlocuteur dédié" />
+    <CheckItem label="SLA sur mesure" />
+  </PricingCard>
+</GridSection>
+
+<CenteredSection>
+_Un membre actif est une personne disposant d'un compte utilisateur, invitée dans l'organisation. Une personne représentée dans l'organigramme sans compte utilisateur est un membre inactif._
+</CenteredSection>
+
+<Section theme="purple" textAlign="center">
+## Association à but non lucratif ?
+
+Nous proposons des remises significatives aux associations reconnues. Parlons-en.
+
+<Button href="/fr/contact" variant="primary" label="Nous contacter" />
+</Section>
+
+<Section fullWidth>
+  <ClientLogos />
+</Section>
+
+<CtaBanner
+  title="Encore des questions ?"
+  primaryLabel="Lire les docs"
+  primaryHref="/fr/docs"
+  secondaryLabel="Nous contacter"
+  secondaryHref="/fr/contact"
+>
+  Chaque plan commence par un essai gratuit. Sans carte bancaire.
+</CtaBanner>

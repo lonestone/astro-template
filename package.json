@@ -1,0 +1,27 @@
+{
+  "name": "astro-website-template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astrocms": "astrocms"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/netlify": "^7.0.3",
+    "@astrojs/sitemap": "^3.7.1",
+    "@tailwindcss/postcss": "^4.2.2",
+    "astro": "^6.0.6",
+    "astrocms": "^0.1.1",
+    "glob": "^13.0.6",
+    "tailwindcss": "^4.2.2",
+    "turndown": "^7.2.2"
+  },
+  "devDependencies": {
+    "@types/turndown": "^5.0.6"
+  }
+}

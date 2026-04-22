@@ -1,0 +1,50 @@
+languageName: Français
+documentation: Documentation
+guides: Guides
+developers: Développeurs
+terms: Mentions légales
+bookDemo: Nous contacter
+features: Fonctionnalités
+pricing: Tarifs
+contact: Contact
+support: Support
+about: À propos
+privacyPolicy: Politique de confidentialité
+termsOfSale: Conditions générales
+updatedOn: Mis à jour le
+
+blog:
+  label: Blog
+  title: Blog
+  subtitle: Actualités, mises à jour et réflexions.
+  similarPosts: Continuer la lecture
+
+clientCases:
+  label: Cas clients
+  title: Cas clients
+  subtitle: Comment nos utilisateurs avancent grâce à notre produit.
+  sector: Secteur
+  teamSize: Effectif
+  employees: collaborateurs
+
+cta:
+  title: Prêt à commencer ?
+  description: Rejoignez les équipes qui ont déjà sauté le pas.
+  button: Nous contacter
+
+sidebar:
+  toc: Sommaire
+  tagline: Une solution moderne pour les équipes modernes.
+  discover: En savoir plus
+
+api:
+  reference: Référence API
+  introduction: Introduction
+  fieldLabel: Champ
+  typeLabel: Type
+  descriptionLabel: Description
+
+footer:
+  product: Produit
+  resources: Ressources
+  company: Entreprise
