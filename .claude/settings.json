@@ -1,0 +1,68 @@
+{
+  "permissions": {
+    "allow": [
+      "Update(*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(npm:*)",
+      "Bash(git:*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(curl:*)",
+      "Bash(node:*)",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx astro add:*)",
+      "Bash(npx astro build:*)",
+      "Bash(npx playwright:*)",
+      "WebSearch",
+      "WebFetch(domain:docs.astro.build)",
+      "WebFetch(domain:astro.build)",
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_run_code",
+      "mcp__playwright__browser_install",
+      "mcp__playwright__browser_close",
+      "mcp__web-inspector__scroll_to_element",
+      "mcp__web-inspector__navigate",
+      "mcp__web-inspector__inspect_dom",
+      "mcp__web-inspector__get_computed_styles",
+      "mcp__web-inspector__get_html",
+      "mcp__web-inspector__evaluate",
+      "mcp__web-inspector__confirm_output",
+      "mcp__web-inspector__find_by_text",
+      "mcp__web-inspector__inspect_ancestors",
+      "mcp__web-inspector__visual_screenshot_for_humans",
+      "mcp__web-inspector__close",
+      "mcp__web-inspector__check_visibility",
+      "mcp__web-inspector__click",
+      "mcp__web-inspector__get_text",
+      "mcp__web-inspector__query_selector",
+      "mcp__web-inspector__scroll_by"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [],
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff"
+          }
+        ]
+      }
+    ]
+  }
+}
