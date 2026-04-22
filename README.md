@@ -429,6 +429,23 @@ docs, and API reference. A pure marketing site for a service might keep only
 
 ---
 
+## Cursor compatibility
+
+The project is configured for Claude Code (`CLAUDE.md`, `.claude/skills/`). To use Cursor with the same instructions:
+
+```bash
+./setup-cursor-compat.sh
+```
+
+The script creates two symlinks (gitignored):
+
+- `AGENTS.md → CLAUDE.md` — Cursor reads `AGENTS.md` as project instructions
+- `.cursor/skills/ → .claude/skills/` — Cursor reads skills from the same skills folder
+
+Both tools then share a single source of configuration.
+
+---
+
 ## License
 
 MIT. See [LICENSE](./LICENSE). Use it for personal or commercial projects.

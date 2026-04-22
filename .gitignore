@@ -15,3 +15,10 @@ node_modules/
 .DS_Store
 .vscode/
 .idea/
+
+# Cursor config (symlinks created by setup-cursor-compat.sh)
+.cursor
+AGENTS.md
+
+# Local Claude Code permissions
+.claude/settings.local.json
