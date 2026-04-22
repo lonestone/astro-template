@@ -11,7 +11,7 @@ const { Content } = await render(entry)
 ---
 
 <BaseLayout title={entry.data.title}>
-  <div class="w-full flex-1 flex flex-col justify-center">
+  <div class="w-full flex-1 flex flex-col items-center justify-center text-center px-6">
     <Content components={mdxComponents} />
   </div>
 </BaseLayout>
