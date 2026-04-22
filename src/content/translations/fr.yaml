@@ -40,9 +40,6 @@ sidebar:
 api:
   reference: Référence API
   introduction: Introduction
-  fieldLabel: Champ
-  typeLabel: Type
-  descriptionLabel: Description
 
 footer:
   product: Produit

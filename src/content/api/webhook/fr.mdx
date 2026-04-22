@@ -7,14 +7,12 @@ category: automation
 
 ## Champs
 
-<EntityFields
-  fields={[
-  { name: 'id', type: 'uuid', description: 'Identifiant unique du webhook' },
-  { name: 'url', type: 'String', description: 'URL de destination recevant les requêtes POST' },
-  { name: 'events', type: 'String[]', description: 'Noms d\'événements écoutés par ce webhook' },
-  { name: 'active', type: 'Boolean', description: 'Si le webhook livre actuellement les événements' },
-]}
-/>
+| Champ    | Type        | Description                                         |
+| -------- | ----------- | --------------------------------------------------- |
+| `id`     | `uuid`      | Identifiant unique du webhook                       |
+| `url`    | `String`    | URL de destination recevant les requêtes POST       |
+| `events` | `String[]`  | Noms d'événements écoutés par ce webhook            |
+| `active` | `Boolean`   | Si le webhook livre actuellement les événements     |
 
 ## Livraison
 
