@@ -46,7 +46,7 @@ const langOptions = await Promise.all(
             data-lang-select
           >
             {langOptions.map((o) => (
-              <option value={o.href} selected={o.lang === lang}>{o.name}</option>
+              <option value={o.href} selected={o.lang === lang} lang={o.lang}>{o.name}</option>
             ))}
           </select>
         )}
