@@ -18,6 +18,7 @@ blog:
   title: Blog
   subtitle: Actualités, mises à jour et réflexions.
   similarPosts: Continuer la lecture
+  keyTakeaways: Points clés
 
 clientCases:
   label: Cas clients

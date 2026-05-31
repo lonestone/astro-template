@@ -18,6 +18,7 @@ blog:
   title: Blog
   subtitle: News, updates and insights.
   similarPosts: Continue reading
+  keyTakeaways: Key takeaways
 
 clientCases:
   label: Case Studies
