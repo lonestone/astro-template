@@ -22,3 +22,7 @@ AGENTS.md
 
 # Local Claude Code permissions
 .claude/settings.local.json
+
+# MCP cache
+.mcp-web-inspector
+.playwright-mcp
