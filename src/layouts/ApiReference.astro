@@ -14,7 +14,7 @@ const lang = getLangFromUrl(Astro.url)
 const t = await getTranslations(lang)
 ---
 
-<DocsLayout title={title} section="api">
+<DocsLayout title={title} description={description} section="api">
   <article>
     <header class="mb-8">
       <Breadcrumb category={t.api.reference} categoryUrl={langPath(lang, '/api')} title={title} hideTitle class="mb-3" />
