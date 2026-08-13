@@ -41,7 +41,7 @@ Si vous oubliez un champ requis (par exemple `summary`), le build échoue avec u
 
 Quand vous savez que chaque article de blog a un `title`, un `summary` et éventuellement une `date`, écrire l'index du blog devient trivial :
 
-```astro
+```ts
 const posts = await getCollection('blog')
 posts.sort((a, b) => b.data.date - a.data.date)
 ```
