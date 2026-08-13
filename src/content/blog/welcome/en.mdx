@@ -38,6 +38,17 @@ Any Astro component in `src/components/` is available directly inside MDX. You c
 
 …or a CTA banner, a split section, a YouTube embed, or anything else.
 
+## Diagrams
+
+A ```` ```mermaid ```` fence is rendered in the browser, so a diagram stays plain text in Git and follows the site palette:
+
+```mermaid
+graph LR
+  A[MDX file] --> B[Content collection]
+  B --> C[Layout]
+  C --> D[Static page]
+```
+
 ## Table of contents
 
 Every H2 in the article automatically becomes an item in the table of contents on the right. On mobile, the TOC collapses into a dropdown so it stays out of the way.

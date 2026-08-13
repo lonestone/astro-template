@@ -38,6 +38,17 @@ N'importe quel composant Astro de `src/components/` est utilisable directement d
 
 …ou une bannière CTA, un split, une vidéo YouTube, etc.
 
+## Schémas
+
+Un bloc ```` ```mermaid ```` est rendu dans le navigateur, ce qui garde le schéma en texte brut dans Git et lui fait suivre la palette du site :
+
+```mermaid
+graph LR
+  A[Fichier MDX] --> B[Collection de contenu]
+  B --> C[Layout]
+  C --> D[Page statique]
+```
+
 ## Sommaire
 
 Chaque H2 de l'article devient automatiquement une entrée du sommaire à droite. Sur mobile, le sommaire se replie en menu déroulant pour ne pas gêner la lecture.
