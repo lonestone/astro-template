@@ -41,6 +41,11 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
   redirects,
+  server: {
+    // Fixed so several sites can run side by side on the same machine.
+    // Pick a free port when deriving a new site from this template.
+    port: 6106,
+  },
   markdown: { processor },
   integrations: [
     // Renders every code block, from the options in ec.config.mjs.

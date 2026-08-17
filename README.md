@@ -18,7 +18,7 @@ Released under the **MIT license**.
 
 ```bash
 npm install
-npm run dev         # http://localhost:4321
+npm run dev         # http://localhost:6106 (set `server.port` in astro.config.ts)
 ```
 
 Build & preview:
