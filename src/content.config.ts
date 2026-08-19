@@ -49,6 +49,9 @@ const docs = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     order: z.number().optional(),
+    // Set to false on titles that already name the brand, so the document
+    // title is not suffixed with it twice.
+    titleBrand: z.boolean().default(true),
   }),
 })
 
@@ -59,6 +62,9 @@ const guides = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     order: z.number().optional(),
+    // Set to false on titles that already name the brand, so the document
+    // title is not suffixed with it twice.
+    titleBrand: z.boolean().default(true),
   }),
 })
 
@@ -69,6 +75,9 @@ const developers = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     order: z.number().optional(),
+    // Set to false on titles that already name the brand, so the document
+    // title is not suffixed with it twice.
+    titleBrand: z.boolean().default(true),
   }),
 })
 
@@ -92,6 +101,7 @@ const api = defineCollection({
     description: z.string().optional(),
     entity: z.string().optional(),
     category: z.string().optional(),
+    titleBrand: z.boolean().default(true),
   }),
 })
 
@@ -108,6 +118,7 @@ const pages = defineCollection({
     title: z.string(),
     // Meta description, rendered by `BaseLayout` and the social preview.
     description: z.string().optional(),
+    titleBrand: z.boolean().default(true),
   }),
 })
 

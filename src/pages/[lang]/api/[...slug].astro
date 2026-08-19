@@ -30,7 +30,7 @@ const isEntityPage = !!entry.data.entity
     <Content components={mdxComponents} />
   </ApiReference>
 ) : (
-  <DocPage title={entry.data.title} section="api" description={entry.data.description}>
+  <DocPage title={entry.data.title} titleBrand={entry.data.titleBrand} section="api" description={entry.data.description}>
     <Content components={mdxComponents} />
   </DocPage>
 )}

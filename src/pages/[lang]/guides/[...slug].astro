@@ -23,6 +23,6 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 ---
 
-<GuidePage title={entry.data.title} section="guides" description={entry.data.description}>
+<GuidePage title={entry.data.title} titleBrand={entry.data.titleBrand} section="guides" description={entry.data.description}>
   <Content components={mdxComponents} />
 </GuidePage>
