@@ -53,5 +53,5 @@ When a page needs a new visual treatment, build a component in `src/components/`
 - Renaming or deleting a page: add a redirect. One-to-one redirects go in `src/redirects.ts`; wildcard or browser-language redirects go in `public/_redirects` (Netlify syntax).
 - When you remove an import, check whether the source file is still referenced anywhere. If not, delete it (and follow its own imports).
 - Markdown styles target the `.md` class (added automatically by `src/utils/rehype-md-class.ts`). Don't restyle markdown elements globally — component markup must stay unaffected.
-- The dev server is assumed to be already running; don't start a fresh `npm run dev` unless asked.
+- The astro dev server normally already runs on the port set in `astro.config.ts` (`server.port`). Use that port only. If nothing responds there, start it; if it responds but is broken, kill it and restart it. Never start it on another port.
 - `astrocms.json` drives the bundled CMS UI. Keep `contentDir`, `contentConfig`, `assetsDir`, `componentsDir` in sync if those paths move.
