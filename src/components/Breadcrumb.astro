@@ -1,5 +1,6 @@
 ---
 import config from '../../website.config'
+import { getLangFromUrl, langPath } from '../utils/i18n'
 
 interface Props {
   category: string
@@ -17,11 +18,12 @@ const {
   class: className,
 } = Astro.props
 
+const home = langPath(getLangFromUrl(Astro.url), '')
 const linkClass = 'text-text-secondary hover:text-text-main hover:underline transition-colors'
 ---
 
 <nav class:list={['text-sm text-text-secondary', className]}>
-  <a href="/" class={linkClass}>{config.siteName}</a>
+  <a href={home} class={linkClass}>{config.siteName}</a>
   <span class="mx-1">⟩</span>
   <a href={categoryUrl} class={linkClass}>{category}</a>
   {!hideTitle && (
@@ -40,7 +42,7 @@ const linkClass = 'text-text-secondary hover:text-text-main hover:underline tran
       "@type": "ListItem",
       position: 1,
       name: config.siteName,
-      item: `${Astro.site?.origin ?? ''}/`,
+      item: `${Astro.site?.origin ?? ''}${home}`,
     },
     {
       "@type": "ListItem",
