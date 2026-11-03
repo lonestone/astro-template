@@ -26,7 +26,11 @@ async function main() {
   const defaultName = new URL(url).hostname.replace(/\./g, '-') + '.png';
   const output = positional[1] || defaultName;
 
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({
+    headless: true,
+    channel: process.platform === 'darwin' ? 'chrome' : undefined,
+    chromiumSandbox: process.platform !== 'linux',
+  });
   const context = await browser.newContext({
     viewport: { width: 1920, height: 1080 },
   });

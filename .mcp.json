@@ -3,14 +3,14 @@
     "playwright": {
       "command": "npx",
       "args": [
-        "@playwright/mcp@latest"
+        "@playwright/mcp@0.0.84"
       ]
     },
     "web-inspector": {
       "command": "npx",
       "args": [
         "-y",
-        "mcp-web-inspector"
+        "mcp-web-inspector@0.14.0"
       ]
     },
     "tailwindcss": {
