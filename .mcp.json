@@ -6,18 +6,11 @@
         "@playwright/mcp@0.0.84"
       ]
     },
-    "web-inspector": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-web-inspector@0.14.0"
-      ]
-    },
     "tailwindcss": {
       "command": "npx",
       "args": [
         "-y",
-        "tailwindcss-mcp-server"
+        "tailwindcss-mcp-server@0.1.1"
       ]
     }
   }
