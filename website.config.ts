@@ -7,17 +7,17 @@
  */
 export default {
   // Canonical production URL. Used for sitemap, canonical tags, social previews.
-  site: "https://example.com",
+  site: 'https://example.com',
 
   // Brand name shown in the header logo, footer, breadcrumbs, meta tags.
-  siteName: "Astro Template",
+  siteName: 'Astro Template',
 
   // Supported UI languages. The first entry is the default.
   // Content collections expect files named `<slug>/<lang>.mdx`.
-  langs: ["en", "fr"],
-  defaultLang: "en",
+  langs: ['en', 'fr'],
+  defaultLang: 'en',
 
   // Host the build targets. Keep the files of the other one or delete them,
   // see "Deployment" in README.md.
-  deploy: "cloudflare" as "cloudflare" | "netlify",
-} as const;
+  deploy: 'cloudflare' as 'cloudflare' | 'netlify',
+} as const

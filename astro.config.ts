@@ -1,21 +1,21 @@
-import { defineConfig } from "astro/config";
-import { unified } from "@astrojs/markdown-remark";
-import mdx, { type MdxOptions } from "@astrojs/mdx";
-import netlify from "@astrojs/netlify";
-import sitemap from "@astrojs/sitemap";
-import expressiveCode from "astro-expressive-code";
-import rehypeExternalLinks from "rehype-external-links";
-import rehypeMermaid from "rehype-mermaid";
-import { redirects } from "./src/redirects";
-import { contentLastmod } from "./src/utils/content-lastmod";
-import rehypeMdClass from "./src/utils/rehype-md-class";
-import { getExternalLinkRel } from "./src/utils/external-links";
-import enrichMd from "./src/integrations/enrich-md";
-import cloudflareRedirects from "./src/integrations/cloudflare-redirects";
-import config from "./website.config";
+import { defineConfig } from 'astro/config'
+import { unified } from '@astrojs/markdown-remark'
+import mdx, { type MdxOptions } from '@astrojs/mdx'
+import netlify from '@astrojs/netlify'
+import sitemap from '@astrojs/sitemap'
+import expressiveCode from 'astro-expressive-code'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypeMermaid from 'rehype-mermaid'
+import { redirects } from './src/redirects'
+import { contentLastmod } from './src/utils/content-lastmod'
+import rehypeMdClass from './src/utils/rehype-md-class'
+import { getExternalLinkRel } from './src/utils/external-links'
+import enrichMd from './src/integrations/enrich-md'
+import cloudflareRedirects from './src/integrations/cloudflare-redirects'
+import config from './website.config'
 
-const { site, langs, defaultLang, deploy } = config;
-const multilang = langs.length > 1;
+const { site, langs, defaultLang, deploy } = config
+const multilang = langs.length > 1
 
 // Drives `.md` files. `pre-mermaid` leaves a `<pre class="mermaid">` rendered
 // client-side by `src/scripts/mermaid.ts`, so no Playwright is needed at build
@@ -23,29 +23,29 @@ const multilang = langs.length > 1;
 // and before Expressive Code, which then finds no `<code>` left to highlight.
 const processor = unified({
   rehypePlugins: [
-    [rehypeMermaid, { strategy: "pre-mermaid" }],
+    [rehypeMermaid, { strategy: 'pre-mermaid' }],
     rehypeMdClass,
-    [rehypeExternalLinks, { target: "_blank", rel: getExternalLinkRel }],
+    [rehypeExternalLinks, { target: '_blank', rel: getExternalLinkRel }],
   ],
   gfm: true,
-});
+})
 
 export default defineConfig({
   site,
   // Cloudflare serves `dist/` as is, images are optimized by sharp at build time.
   adapter:
-    deploy === "netlify"
+    deploy === 'netlify'
       ? netlify({
           // Netlify's on-demand image service only exists on their production
           // runtime, so `npm run dev` would get broken image URLs. Enable it only
           // when building for production.
-          imageCDN: process.env.NODE_ENV === "production",
+          imageCDN: process.env.NODE_ENV === 'production',
           edgeMiddleware: false,
         })
       : undefined,
-  output: "static",
-  trailingSlash: "never",
-  build: { format: "file" },
+  output: 'static',
+  trailingSlash: 'never',
+  build: { format: 'file' },
   redirects,
   server: {
     // Fixed so several sites can run side by side on the same machine.
@@ -63,18 +63,16 @@ export default defineConfig({
     // pages. `gfm` is explicit for the same reason, a custom processor hides the
     // default Astro would otherwise pass on (dropping remark-gfm breaks tables).
     mdx({
-      remarkPlugins: processor.options
-        .remarkPlugins as MdxOptions["remarkPlugins"],
-      rehypePlugins: processor.options
-        .rehypePlugins as MdxOptions["rehypePlugins"],
+      remarkPlugins: processor.options.remarkPlugins as MdxOptions['remarkPlugins'],
+      rehypePlugins: processor.options.rehypePlugins as MdxOptions['rehypePlugins'],
       gfm: true,
     }),
     sitemap({
       // Date of the last commit on each page's source, so a crawler (and an agent
       // ranking what to read first) can tell what actually moved since last time.
       serialize: (item) => {
-        item.lastmod = contentLastmod(new URL(item.url).pathname);
-        return item;
+        item.lastmod = contentLastmod(new URL(item.url).pathname)
+        return item
       },
       ...(multilang
         ? {
@@ -89,7 +87,7 @@ export default defineConfig({
         : {}),
     }),
     enrichMd({ host: deploy }),
-    ...(deploy === "cloudflare" ? [cloudflareRedirects()] : []),
+    ...(deploy === 'cloudflare' ? [cloudflareRedirects()] : []),
   ],
   i18n: {
     defaultLocale: defaultLang,
@@ -98,4 +96,4 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
-});
+})
