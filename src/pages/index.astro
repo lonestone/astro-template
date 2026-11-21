@@ -1,7 +1,7 @@
 ---
-// Fallback redirect for dev / non-Netlify environments.
-// In production, Netlify redirects `/` based on browser language
-// (see public/_redirects).
+// Fallback redirect for `astro dev`. Once deployed, `/` redirects to the
+// browser's language: the Worker does it on Cloudflare (worker/index.ts),
+// public/_redirects on Netlify.
 import config from '../../website.config'
 return Astro.redirect(`/${config.defaultLang}`)
 ---

@@ -1,0 +1,4 @@
+# Netlify only (`deploy: 'netlify'` in website.config.ts). Delete this file on Cloudflare.
+[build]
+  command = "npm run build"
+  publish = "dist"

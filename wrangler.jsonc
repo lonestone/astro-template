@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Worker name, also the `<name>.<account>.workers.dev` address. Rename it per site.
+  "name": "astro-template",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // The Worker only runs for the root language redirect, everything else is
+    // served without it (redirects and headers included).
+    "run_worker_first": ["/"],
+    // `build.format: "file"` emits `page.html`, served at `/page`.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
