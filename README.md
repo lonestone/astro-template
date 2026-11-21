@@ -370,16 +370,21 @@ Cloudflare does (redirects, headers, Worker).
 ### HTML or Markdown on the same URL (Cloudflare)
 
 Agents can get the `.md` twin of a page from its canonical URL with
-`Accept: text/markdown`, without any Worker. In the zone's **Rules**:
+`Accept: text/markdown`, without any Worker invocation. Three rules in the
+zone's **Rules** (free plan), with `accept` standing for
+`any(lower(http.request.headers["accept"][*])[*] contains "text/markdown")`:
 
-- **URL Rewrite Rule**, path rewritten to the dynamic value
-  `concat(http.request.uri.path, ".md")`, when
-  `any(http.request.headers["accept"][*] contains "text/markdown") and not ends_with(http.request.uri.path, ".md") and http.request.uri.path ne "/" and not starts_with(http.request.uri.path, "/_astro/")`.
-- **Response Header Transform Rule**, `Vary: Accept` added on the same
-  condition.
+| Rule | When | Does |
+|---|---|---|
+| URL Rewrite | `accept and http.request.uri.path ne "/" and not http.request.uri.path contains "."` | Path rewritten to `concat(http.request.uri.path, ".md")` |
+| URL Rewrite | `accept and http.request.uri.path eq "/"` | Path rewritten to `/en.md` (or the page served at `/`) |
+| Response Header Transform | `not raw.http.request.uri.path contains "."` | Adds `Vary: Accept` |
 
-The rule only checks that `text/markdown` is listed, quality values are not
-weighed.
+The header rule reads `raw.http.request.uri.path`, the path before the
+rewrite. Exclude the Worker's own paths (`/api/`) from the first rule. The
+rules only check that `text/markdown` is listed, quality values are not
+weighed. The exact redirects of `src/redirects.ts` also get a `.md` twin in
+`_redirects`, so an old URL asked as markdown still redirects.
 
 ---
 
